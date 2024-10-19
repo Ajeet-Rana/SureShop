@@ -1,0 +1,43 @@
+/* src/Counter.module.css */
+.counterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  font-family: Arial, sans-serif;
+}
+
+.counterValue {
+  font-size: 2rem;
+  margin: 20px 0;
+  color: #333;
+}
+
+.button {
+  font-size: 1rem;
+  padding: 5px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttonIncrement {
+  background-color: #4caf50;
+  color: white;
+}
+
+.buttonIncrement:hover {
+  background-color: dimgray;
+}
+
+.buttonDecrement {
+  background-color: #f44336;
+  color: white;
+}
+
+.buttonDecrement:hover {
+  background-color: dimgrey;
+}
