@@ -1,7 +1,7 @@
 .categories-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 200px);
+  grid-template-rows: repeat(2, 270px);
   grid-gap: 10px;
   padding: 20px;
 }

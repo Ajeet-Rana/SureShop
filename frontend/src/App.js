@@ -36,7 +36,10 @@ import processOrder from "./Component/admin/processOrder.js";
 import UsersList from "./Component/admin/userList.js";
 import UpdateUser from "./Component/admin/updateUser.js";
 import Navbar from "./Component/layout/Header/Navbar1.js";
+import UserOptions from "./Component/layout/Header/userOptions.js";
+import { useSelector } from "react-redux";
 export default function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getstripeApiKey() {
@@ -54,6 +57,7 @@ export default function App() {
   }, []);
   return (
     <Router>
+      {isAuthenticated && <UserOptions user={user} />}
       <Navbar />
       <ProtectedRoute exact path="/account" component={Profile} />
       <ProtectedRoute exact path="/me/update" component={UpdateProfile} />

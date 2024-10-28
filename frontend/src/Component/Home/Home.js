@@ -11,17 +11,17 @@ import { useAlert } from "react-alert";
 import ImageSlider from "./OfferSlider.js";
 const slides = [
   {
-    image: "sales1.webp",
+    image: "Sales_bn.jpg",
     alt: "Summer Sale",
-    offerText: "Summer Sale: 20% Off All Items!",
+    offerText: "Diwali Sale: 20% Off All Items!",
   },
   {
-    image: "sales2.webp",
+    image: "chir_bn.jpg",
     alt: "New Collection",
-    offerText: "New Fall Collection Now Available",
+    offerText: "Christmas OFFER UPTO 50% OFF",
   },
   {
-    image: "sales3.webp",
+    image: "fashion_bn.jpg",
     alt: "Free Shipping Offer",
   },
 ];
@@ -53,6 +53,7 @@ const Home = () => {
           </div>*/}
           <h2 className="homeHeading">PRODUCT CATEGORY</h2>
           <Categories />
+          <h2 className="homeHeading">FEATURED PRODUCTS</h2>
           <div className="container" id="container">
             {products &&
               products.map((product) => (

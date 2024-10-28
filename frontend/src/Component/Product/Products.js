@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../Component/layout/Loader/loader.js";
 import ProductCard from "../Home/ProductCard.js";
 import "./Products.css";
+import { useLocation } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { Slider } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -26,7 +27,9 @@ const Products = ({ match }) => {
   const alert = useAlert();
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 100000]);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(
+    new URLSearchParams(useLocation().search).get("category") || ""
+  );
   const [ratings, setRating] = useState(0);
 
   const { products, loading, error, productsCount, resultPerPage } =

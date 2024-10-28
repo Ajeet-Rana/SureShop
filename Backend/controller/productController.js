@@ -36,13 +36,24 @@ exports.createProducts = catchAsyncError(async (req, res, next) => {
 // Getting All Products
 exports.getAllProducts = catchAsyncError(async (req, res, next) => {
   const resultPerPage = 8;
+
+  // Count total documents matching the criteria for pagination
   const productsCount = await Product.countDocuments();
+
+  // Create an ApiFeatures instance to apply filters
   const apifeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
+    .filter();
 
-  const products = await apifeature.query;
+  // Retrieve the products that match the criteria
+  let products = await apifeature.query;
+
+  // If you want to limit the number of products returned
+  products =
+    products.length > resultPerPage
+      ? products.sort(() => Math.random() - 0.5).slice(0, resultPerPage)
+      : products; // Randomize and limit to resultPerPage
+
   res.status(200).json({
     success: true,
     products,

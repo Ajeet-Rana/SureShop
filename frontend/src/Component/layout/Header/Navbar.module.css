@@ -87,3 +87,31 @@
     display: block;
   }
 }
+
+.user-image {
+  width: 8px; /* Adjust size as needed */
+  height: 8px; /* Adjust size as needed */
+  border-radius: 50%; /* Make it circular */
+}
+
+.dropdown {
+  position: absolute; /* Position relative to the navbar */
+  top: 60px; /* Adjust this based on your navbar height */
+  right: 20px; /* Align it with the right side */
+  background: white;
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Round the corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.dropdown a {
+  display: block; /* Make the links block-level elements */
+  padding: 10px 15px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Link color */
+}
+
+.dropdown a:hover {
+  background-color: #f1f1f1; /* Change background on hover */
+}
