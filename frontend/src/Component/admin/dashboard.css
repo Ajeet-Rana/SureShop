@@ -24,65 +24,104 @@
   margin: 2rem 0;
 }
 
-.dashboardSummary > div {
+.dashboardSummaryBox {
   display: flex;
-  justify-content: space-around;
-  padding: 1rem;
-
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dashboardSummary > div > p {
-  background-color: #4685da;
-  color: #fff;
-  font: 400 1rem "Roboto";
-  text-align: center;
-  padding: 1rem;
-  border-radius: 5px;
-  width: 100%;
-  margin: 0 1rem;
-}
-
-.dashboardSummaryBox2 > a {
-  color: #333;
-  font: 400 2.8rem "Roboto";
-  text-align: center;
-  background-color: #fff;
+.dashboardSummaryBox > a {
   text-decoration: none;
-  padding: 1rem;
-  width: 18vmax;
-  height: 8vmax;
-  margin: 1rem;
-  gap: 1rem;
-  border-radius: 4%;
+  background-color: #ffffff;
+  flex: 1 1 calc(25% - 2rem); /* Responsive flex sizing */
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  transition: background-color 0.3s, transform 0.3s;
+  gap: 0.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.dashboardSummaryBox2 > a:hover {
-  background-color: #e1e1e1;
-  transform: scale(1.05);
+.dashboardSummaryBox > a:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.lineChart {
-  width: 85%;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.doughnutChart {
-  width: 28vmax;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #fff;
+.iconContainer {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboardSummaryBox > a > p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.dashboardSummaryBox > a > h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Responsive Breakpoints */
+
+/* For medium screens (tablets, 768px and below) */
+@media (max-width: 768px) {
+  .dashboardSummaryBox {
+    gap: 1rem;
+  }
+
+  .dashboardSummaryBox > a {
+    flex: 1 1 calc(50% - 1rem); /* Adjust to two columns */
+    padding: 1rem;
+  }
+
+  .iconContainer {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dashboardSummaryBox > a > p {
+    font-size: 1rem;
+  }
+
+  .dashboardSummaryBox > a > h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* For small screens (mobile, 480px and below) */
+@media (max-width: 480px) {
+  .dashboardSummaryBox > a {
+    flex: 1 1 100%; /* Single column */
+    padding: 1rem;
+  }
+
+  .iconContainer {
+    width: 50px;
+    height: 50px;
+  }
+
+  .dashboardSummaryBox > a > p {
+    font-size: 0.9rem;
+  }
+
+  .dashboardSummaryBox > a > h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -118,4 +157,41 @@
   .doughnutChart {
     width: 80%;
   }
+}
+.dashboardCharts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+.chartContainer {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chartContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.lineChart {
+  flex: 1 1 60%; /* Responsive width */
+}
+
+.doughnutChart {
+  flex: 1 1 30%; /* Responsive width */
+  max-width: 400px;
+}
+
+.chartContainer h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 1rem;
 }

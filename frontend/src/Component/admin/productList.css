@@ -1,54 +1,72 @@
 .productListContainer {
-  width: 100%;
-  box-sizing: border-box;
-  background-color: rgb(255, 255, 255);
-  border-left: 1px solid rgba(0, 0, 0, 0.158);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  flex: 1;
+  margin: 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 #productListHeading {
-  font: 400 2rem "Roboto";
-  padding: 0.5vmax;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.637);
-  transition: all 0.5s;
-  margin: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .productListTable {
-  background-color: white;
-  border: none !important;
+  width: 100%;
+  border: none;
+  font-family: "Roboto", sans-serif;
 }
 
-.productListTable div {
-  font: 300 1vmax "Roboto";
-  color: rgba(0, 0, 0, 0.678);
-  border: none !important;
+.greenColor {
+  color: #4caf50;
+  font-weight: bold;
 }
 
-.productListTable a,
-.productListTable button {
-  color: rgba(0, 0, 0, 0.527);
-  transition: all 0.5s;
+.redColor {
+  color: #f44336;
+  font-weight: bold;
 }
 
-.productListTable a:hover {
-  color: tomato;
+.actionButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
 }
 
-.productListTable button:hover {
-  color: rgb(236, 30, 30);
+.editButton {
+  color: #2196f3;
+  transition: transform 0.2s;
 }
 
-.MuiDataGrid-columnHeader div {
-  color: rgb(255, 255, 255);
+.editButton:hover {
+  transform: scale(1.1);
 }
 
-@media screen and (max-width: 600px) {
-  .productListTable div {
-    font: 300 4vw "Roboto";
+.deleteButton {
+  color: #f44336;
+  transition: transform 0.2s;
+}
+
+.deleteButton:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .productListContainer {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  #productListHeading {
+    font-size: 1.5rem;
+  }
+
+  .dashboard {
+    flex-direction: column;
   }
 }

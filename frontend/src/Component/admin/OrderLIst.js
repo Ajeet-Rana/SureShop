@@ -50,59 +50,62 @@ const OrderList = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
-
+    {
+      field: "image", // Use image field
+      headerName: "Image",
+      minWidth: 150,
+      flex: 0.5,
+      renderCell: (params) => {
+        return (
+          <img
+            src={params.value}
+            alt="Product"
+            style={{ width: "50px", height: "50px", objectFit: "cover" }}
+          />
+        );
+      },
+    },
     {
       field: "status",
       headerName: "Status",
-      minWidth: 150,
-      flex: 0.5,
-      cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : "redColor";
-      },
+      minWidth: 120,
+      flex: 0.6,
+      cellClassName: (params) =>
+        params.row.status === "Delivered" ? "greenColor" : "redColor",
     },
     {
       field: "itemsQty",
       headerName: "Items Qty",
       type: "number",
-      minWidth: 150,
-      flex: 0.4,
+      minWidth: 120,
+      flex: 0.5,
     },
-
     {
       field: "amount",
       headerName: "Amount",
       type: "number",
-      minWidth: 270,
-      flex: 0.5,
+      minWidth: 150,
+      flex: 0.7,
     },
-
     {
       field: "actions",
-      flex: 0.3,
       headerName: "Actions",
       minWidth: 150,
-      type: "number",
+      flex: 0.5,
       sortable: false,
-      renderCell: (params) => {
-        return (
-          <Fragment>
-            <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
-            </Link>
-
-            <Button
-              onClick={() =>
-                deleteOrderHandler(params.getValue(params.id, "id"))
-              }
-            >
-              <DeleteIcon />
-            </Button>
-          </Fragment>
-        );
-      },
+      renderCell: (params) => (
+        <div className="actionButtons">
+          <Link to={`/admin/order/${params.row.id}`} className="editButton">
+            <EditIcon />
+          </Link>
+          <Button
+            onClick={() => deleteOrderHandler(params.row.id)}
+            className="deleteButton"
+          >
+            <DeleteIcon />
+          </Button>
+        </div>
+      ),
     },
   ];
 
@@ -110,11 +113,22 @@ const OrderList = ({ history }) => {
 
   orders &&
     orders.forEach((item) => {
+      // Safely check if orderItems exists and has items
+      const itemsQty =
+        item.orderItems && Array.isArray(item.orderItems)
+          ? item.orderItems.length
+          : 0;
+
+      // Get the image URL from the first item in orderItems (assuming 1 product per order)
+      const image =
+        item.orderItems && item.orderItems[0] && item.orderItems[0].image;
+
       rows.push({
         id: item._id,
-        itemsQty: item.orderItems.length,
+        itemsQty: itemsQty,
         amount: item.totalPrice,
         status: item.orderStatus,
+        image: image, // Add image field
       });
     });
 
@@ -125,8 +139,7 @@ const OrderList = ({ history }) => {
       <div className="dashboard">
         <SideBar />
         <div className="productListContainer">
-          <h1 id="productListHeading">ALL ORDERS</h1>
-
+          <h1 id="productListHeading">All Orders</h1>
           <DataGrid
             rows={rows}
             columns={columns}

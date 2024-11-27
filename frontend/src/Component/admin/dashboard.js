@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAdminProduct } from "../../action/productAction.js";
+import OrderList from "./OrderLIst.js";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
@@ -36,89 +37,136 @@ const Dashboard = () => {
     datasets: [
       {
         label: "Total Amount",
-        backgroundColor: ["tomato"],
-        hoverBackgroundColor: ["rgb(197,72,40)"],
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 2,
+        pointBackgroundColor: "rgba(255, 99, 132, 1)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgba(255, 99, 132, 1)",
         data: [0, 4000],
+        fill: true,
+        tension: 0.4, // Add smooth curves
       },
     ],
   };
+
   const doughnutState = {
-    labels: ["Out of Stock", "InStock"],
+    labels: ["Out of Stock", "In Stock"],
     datasets: [
       {
         backgroundColor: ["#00A684", "#680084"],
         hoverBackgroundColor: ["#4B5000", "#35014f"],
-        //data: [outOfStock, products.length - outOfStock],
+        borderWidth: 2,
+        borderColor: "#ffffff",
+        hoverOffset: 8, // Modern hover effect
+        data: [outOfStock, products.length - outOfStock],
       },
     ],
   };
   return (
-    <div className="dashboard">
-      <Sidebar />
-      <div className="dashboardContainer">
-        <Typography component="h1">Dashboard</Typography>
-        <div className="dashboardSummary">
-          <div>
-            <p>
-              Total Amount <br /> {Total_Amt}
-            </p>
+    <>
+      <div className="dashboard">
+        <Sidebar />
+        <div className="dashboardContainer">
+          <Typography component="h1">Dashboard</Typography>
+          <div className="dashboardSummary">
+            <div className="dashboardSummaryBox">
+              <Link to="/admin/products">
+                <div
+                  className="iconContainer"
+                  style={{ backgroundColor: "#DEDEFA" }}
+                >
+                  <LocalMallIcon sx={{ color: "#5C59E8", fontSize: "3rem" }} />
+                </div>
+                <p>Product</p>
+                <h3>{products && products.length}</h3>
+              </Link>
+              <Link to="/admin/orders">
+                <div
+                  className="iconContainer"
+                  style={{ backgroundColor: "#F4C3A0" }}
+                >
+                  <ListAltIcon sx={{ color: "#E46A11", fontSize: "3rem" }} />
+                </div>
+                <p>Orders</p>
+                <h3>{orders && orders.length}</h3>
+              </Link>
+              <Link to="/admin/users">
+                <div
+                  className="iconContainer"
+                  style={{ backgroundColor: "#9ED0B9" }}
+                >
+                  <PersonIcon sx={{ color: "#0D894F", fontSize: "3rem" }} />
+                </div>
+                <p>Users</p>
+                <h3>{users && users.length}</h3>
+              </Link>
+              <Link to="/admin/total">
+                <div
+                  className="iconContainer"
+                  style={{ backgroundColor: "#F9B4AF" }}
+                >
+                  <PersonIcon sx={{ color: "#F04438", fontSize: "3rem" }} />
+                </div>
+                <p>Total Amount</p>
+                <h3>{Total_Amt}</h3>
+              </Link>
+            </div>
           </div>
-          <div className="dashboardSummaryBox2">
-            <Link to="/admin/products">
-              <div>
-                <LocalMallIcon
-                  sx={{
-                    color: "#5C59E8",
-                    fontSize: "70px",
-                    backgroundColor: "#DEDEFA",
-                    borderRadius: "50%",
-                    padding: "15px",
-                  }}
-                />
-              </div>
-              <p>Product</p>
-              <p>{products && products.length}</p>
-            </Link>
-            <Link to="/admin/orders">
-              <div>
-                <ListAltIcon
-                  sx={{
-                    color: "#E46A11",
-                    fontSize: "70px",
-                    backgroundColor: "#F4C3A0",
-                    borderRadius: "50%",
-                    padding: "15px",
-                  }}
-                />
-              </div>
-              <p>Orders</p>
-              <p>{orders && orders.length}</p>
-            </Link>
-            <Link to="/admin/users">
-              <div>
-                <PersonIcon
-                  sx={{
-                    color: "#0D894F",
-                    fontSize: "70px",
-                    backgroundColor: "#9ED0B9",
-                    borderRadius: "50%",
-                    padding: "15px",
-                  }}
-                />
-              </div>
-              <p>Users</p>
-              <p>{users && users.length}</p>
-            </Link>
+
+          <div className="dashboardCharts">
+            <div className="chartContainer lineChart">
+              <h3>Total Amount Overview</h3>
+              <Line
+                data={lineState}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: "top",
+                      labels: {
+                        font: {
+                          size: 14,
+                          family: "Roboto",
+                        },
+                      },
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div className="chartContainer doughnutChart">
+              <h3>Stock Distribution</h3>
+              <Doughnut
+                data={doughnutState}
+                options={{
+                  responsive: true,
+                  plugins: {
+                    tooltip: {
+                      callbacks: {
+                        label: function (tooltipItem) {
+                          return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                        },
+                      },
+                    },
+                    legend: {
+                      position: "top",
+                      labels: {
+                        font: {
+                          size: 14,
+                          family: "Roboto",
+                        },
+                      },
+                    },
+                  },
+                }}
+              />
+            </div>
           </div>
-        </div>
-        <div className="lineChart">
-          <Line data={lineState} />
-        </div>
-        <div className="doughnutChart">
-          <Doughnut data={doughnutState} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

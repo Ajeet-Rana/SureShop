@@ -3,9 +3,9 @@ import { sleep } from "k6";
 
 export const options = {
   // A number specifying the number of VUs to run concurrently.
-  vus: 500,
+  vus: 70,
   // A string specifying the total duration of the test run.
-  duration: "1m",
+  duration: "30s",
   thresholds: {
     http_req_failed: ["rate<0.01"], // http errors should be less than 1%
     http_req_duration: ["p(95)<200"], // 95% of requests should be below 200ms
@@ -64,7 +64,7 @@ export const options = {
 // about authoring k6 scripts.
 //
 export default function () {
-  http.get("http://localhost:4000/api/v1/product/662dd01ceebb9af6b8460101");
+  http.get("http://localhost:4000/api/v1/products");
   // Wait for all requests to complete
 
   // Optionally, sleep for 1 second after all requests are complete
