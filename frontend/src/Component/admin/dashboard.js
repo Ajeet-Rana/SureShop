@@ -4,6 +4,8 @@ import Sidebar from "./Sidebar.js";
 import { Doughnut, Line } from "react-chartjs-2";
 import "./dashboard.css";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
+import PersonIcon from "@mui/icons-material/Person";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -46,7 +48,7 @@ const Dashboard = () => {
       {
         backgroundColor: ["#00A684", "#680084"],
         hoverBackgroundColor: ["#4B5000", "#35014f"],
-        data: [outOfStock, products.length - outOfStock],
+        //data: [outOfStock, products.length - outOfStock],
       },
     ],
   };
@@ -63,15 +65,47 @@ const Dashboard = () => {
           </div>
           <div className="dashboardSummaryBox2">
             <Link to="/admin/products">
-              <svg></svg>
+              <div>
+                <LocalMallIcon
+                  sx={{
+                    color: "#5C59E8",
+                    fontSize: "70px",
+                    backgroundColor: "#DEDEFA",
+                    borderRadius: "50%",
+                    padding: "15px",
+                  }}
+                />
+              </div>
               <p>Product</p>
               <p>{products && products.length}</p>
             </Link>
             <Link to="/admin/orders">
+              <div>
+                <ListAltIcon
+                  sx={{
+                    color: "#E46A11",
+                    fontSize: "70px",
+                    backgroundColor: "#F4C3A0",
+                    borderRadius: "50%",
+                    padding: "15px",
+                  }}
+                />
+              </div>
               <p>Orders</p>
               <p>{orders && orders.length}</p>
             </Link>
             <Link to="/admin/users">
+              <div>
+                <PersonIcon
+                  sx={{
+                    color: "#0D894F",
+                    fontSize: "70px",
+                    backgroundColor: "#9ED0B9",
+                    borderRadius: "50%",
+                    padding: "15px",
+                  }}
+                />
+              </div>
               <p>Users</p>
               <p>{users && users.length}</p>
             </Link>

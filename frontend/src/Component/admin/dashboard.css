@@ -46,7 +46,7 @@
 
 .dashboardSummaryBox2 > a {
   color: #333;
-  font: 400 1.2rem "Roboto";
+  font: 400 2.8rem "Roboto";
   text-align: center;
   background-color: #fff;
   text-decoration: none;
@@ -54,6 +54,7 @@
   width: 18vmax;
   height: 8vmax;
   margin: 1rem;
+  gap: 1rem;
   border-radius: 4%;
   display: flex;
   justify-content: center;
