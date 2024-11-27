@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-
-import { FiMenu, FiX } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { FiMenu, FiX, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const NavbarContainer = styled.nav`
   display: flex;
+  margin-right: 8%;
   justify-content: space-between;
   align-items: center;
-  padding: 0% 40% 0% 0%;
   height: 80px;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
@@ -30,7 +30,7 @@ const Logo = styled.div`
 const Menu = styled.ul`
   display: flex;
   list-style-type: none;
-  gap: 20px;
+  gap: 80px;
 
   @media (max-width: 768px) {
     display: none; /* Hide menu on small screens */
@@ -96,7 +96,7 @@ const linkVariants = {
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { isAuthenticated } = useSelector((state) => state.user);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -118,13 +118,61 @@ const Navbar = () => {
           {["Home", "Products", "About", "Contact"].map((item, index) => (
             <MenuItem key={index}>
               <Link
-                to={`/${item.toLowerCase()}`}
+                to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <motion.div whileHover={{ scale: 1.1 }}>{item}</motion.div>
               </Link>
             </MenuItem>
           ))}
+          {!isAuthenticated && (
+            <>
+              <MenuItem>
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    style={{
+                      backgroundColor: "transparent",
+                      border: "1px solid currentColor",
+                      padding: "8px 16px",
+                      cursor: "pointer",
+                      fontSize: "1rem",
+                      color: "inherit",
+                    }}
+                  >
+                    Login
+                  </motion.button>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link
+                  to="/cart"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    style={{
+                      backgroundColor: "transparent",
+                      padding: "8px 16px",
+                      border: "1px solid currentColor",
+                      cursor: "pointer",
+                      fontSize: "1rem",
+                      color: "inherit",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <FiShoppingCart style={{ marginRight: "8px" }} />{" "}
+                    {/* Cart icon */}
+                    Cart
+                  </motion.button>
+                </Link>
+              </MenuItem>
+            </>
+          )}
         </Menu>
 
         {/* Hamburger Icon for small screens */}

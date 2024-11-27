@@ -3,6 +3,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.js";
 import Sidebar from "./Sidebar.js";
 import { Doughnut, Line } from "react-chartjs-2";
 import "./dashboard.css";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -19,6 +20,11 @@ const Dashboard = () => {
       if (item.Stock === 0) {
         outOfStock += 1;
       }
+    });
+  let Total_Amt = 0;
+  orders &&
+    orders.forEach((order) => {
+      Total_Amt += order.totalPrice;
     });
   useEffect(() => {
     dispatch(getAdminProduct());
@@ -52,11 +58,12 @@ const Dashboard = () => {
         <div className="dashboardSummary">
           <div>
             <p>
-              Total Amount <br /> $200
+              Total Amount <br /> {Total_Amt}
             </p>
           </div>
           <div className="dashboardSummaryBox2">
             <Link to="/admin/products">
+              <svg></svg>
               <p>Product</p>
               <p>{products && products.length}</p>
             </Link>

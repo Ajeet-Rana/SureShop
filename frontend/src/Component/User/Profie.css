@@ -3,10 +3,11 @@
   height: 100vh;
   width: 100vw;
   position: fixed;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   max-width: 100%;
-  background-color: white;
+  background: linear-gradient(135deg, #fffdd2 40%, #fc9ff3 100%);
+  overflow: hidden;
 }
 
 .profileContainer > div {
@@ -20,36 +21,47 @@
 }
 
 .profileContainer > div:first-child > h1 {
-  color: rgba(0, 0, 0, 0.555);
-  font: 500 2.2vmax "Roboto";
+  color: rgba(255, 102, 102, 0.9);
+  font: 500 2.5vmax "Roboto";
   transform: translateX(-10vmax) translateY(-2vmax);
+  animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0) translateY(0);
+  }
 }
 
 .profileContainer > div:first-child > img {
   width: 20vmax;
-  border-radius: 100%;
-  transition: all 0.5s;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .profileContainer > div:first-child > img:hover {
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(5deg);
 }
 
 .profileContainer > div:first-child > a {
   border: none;
-  background-color: tomato;
+  background-color: #ff6161;
   font: 400 1vmax "Roboto";
   color: white;
   text-decoration: none;
-  padding: 0.5vmax;
-  width: 30%;
-  margin: 4vmax;
+  padding: 0.7vmax;
+  width: 40%;
+  margin: 3vmax;
   text-align: center;
-  transition: all 0.5s;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .profileContainer > div:first-child > a:hover {
-  background-color: rgb(204, 78, 56);
+  background-color: #ff4040;
+  transform: scale(1.05);
 }
 
 .profileContainer > div:last-child {
@@ -57,17 +69,37 @@
   align-items: flex-start;
   padding: 5vmax;
   box-sizing: border-box;
+  animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .profileContainer > div:last-child > div > h4 {
-  color: black;
-  font: 400 1.2vmax "Roboto";
+  color: #444444;
+  font: 500 1.5vmax "Roboto";
+  transition: color 0.3s;
+}
+
+.profileContainer > div:last-child > div > h4:hover {
+  color: #ff4040;
 }
 
 .profileContainer > div:last-child > div > p {
-  color: rgba(0, 0, 0, 0.418);
+  color: rgba(0, 0, 0, 0.5);
   font: 400 1vmax cursive;
   margin: 0.2vmax;
+  transition: color 0.3s;
+}
+
+.profileContainer > div:last-child > div > p:hover {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .profileContainer > div:last-child > div:last-child {
@@ -78,32 +110,36 @@
 
 .profileContainer > div:last-child > div:last-child > a {
   border: none;
-  background-color: rgb(68, 68, 68);
+  background-color: #ce185bd2;
   font: 400 1vmax "Roboto";
   color: white;
   text-decoration: none;
   padding: 0.5vmax;
   text-align: center;
-  transition: all 0.5s;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
   margin: 1vmax 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .profileContainer > div:last-child > div:last-child > a:hover {
-  background-color: rgb(31, 31, 31);
+  background-color: #222222;
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 600px) {
   .profileContainer {
     flex-direction: column;
+    background: linear-gradient(135deg, #fcb69f 0%, #ffecd2 100%);
   }
 
   .profileContainer > div:first-child > h1 {
-    font: 500 3.2vmax "Roboto";
+    font: 500 3vmax "Roboto";
     transform: translateY(-2vmax);
   }
 
   .profileContainer > div:first-child > a {
-    font: 400 1.7vmax "Roboto";
+    font: 400 1.5vmax "Roboto";
     padding: 1vmax;
   }
 
@@ -117,13 +153,13 @@
   }
 
   .profileContainer > div:last-child > div > p {
-    font: 400 2vmax cursive;
+    font: 400 1.8vmax cursive;
     margin: 0.5vmax 0;
   }
 
   .profileContainer > div:last-child > div:last-child > a {
-    font: 400 1.8vmax "Roboto";
+    font: 400 1.6vmax "Roboto";
     padding: 1vmax;
-    margin: 2vmax 0;
+    margin: 1.5vmax 0;
   }
 }

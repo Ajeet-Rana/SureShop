@@ -1,30 +1,105 @@
 import React from "react";
-import playStore from "../../../images/playstore.png";
-import appStore from "../../../images/Appstore.png";
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faFacebook,
+  faTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer id="footer">
-      <div className="leftFooter">
-        <h4>DOWNLOAD OUR APP</h4>
-        <p>Download App for Android and IOS mobile phone</p>
-        <img src={playStore} alt="playstore" />
-        <img src={appStore} alt="Appstore" />
+    <footer className="footer">
+      <div className="footer__container">
+        <motion.div
+          className="footer__left"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src="SureSHop.png" alt="Logo" className="footer__logo" />
+
+          <div className="footer__socials">
+            <motion.a
+              whileHover={{ scale: 1.2 }}
+              href="#!"
+              aria-label="Instagram"
+            >
+              <FontAwesomeIcon icon={faInstagram} className="footer__icon" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.2 }}
+              href="#!"
+              aria-label="Facebook"
+            >
+              <FontAwesomeIcon icon={faFacebook} className="footer__icon" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.2 }}
+              href="#!"
+              aria-label="Twitter"
+            >
+              <FontAwesomeIcon icon={faTwitter} className="footer__icon" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.2 }}
+              href="#!"
+              aria-label="YouTube"
+            >
+              <FontAwesomeIcon icon={faYoutube} className="footer__icon" />
+            </motion.a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="footer__center"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <ul>
+            <li>
+              <a href="#!">Contact</a>
+            </li>
+            <li>
+              <a href="#!">Log in</a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a href="#!">Order Status</a>
+            </li>
+            <li>
+              <a href="#!">Wholesale</a>
+            </li>
+            <li>
+              <a href="#!">Careers</a>
+            </li>
+          </ul>
+        </motion.div>
+
+        <motion.div
+          className="footer__right"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h4>Sign Up for Emails</h4>
+          <p>Your one-stop destination for everything extraordinary.</p>
+          <form className="footer__form">
+            <input type="email" placeholder="Email" required />
+            <button type="submit">Sign Me Up</button>
+          </form>
+        </motion.div>
       </div>
-
-      <div className="midFooter">
-        <h1>E_Dukan.</h1>
-        <p>High Quality is our first priority</p>
-
-        <p>Copyrights 2024 &copy; Ajeet Rana</p>
-      </div>
-
-      <div className="rightFooter">
-        <h4>Follow Us</h4>
-        <a href="http://instagram.com/meabhisingh">Instagram</a>
-        <a href="http://youtube.com/6packprogramemr">Youtube</a>
-        <a href="http://instagram.com/meabhisingh">Facebook</a>
+      <div className="footer__bottom">
+        <p>
+          © 2024 Ajeet <a href="#!">Privacy Policy</a>{" "}
+          <a href="#!">Cookie Policy</a>
+        </p>
+        <p>Rishikesh , UTTRAKHAND IN</p>
       </div>
     </footer>
   );
