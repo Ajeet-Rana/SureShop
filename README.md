@@ -90,10 +90,10 @@ The architecture utilizes JWT tokens for secure and scalable role-based authenti
    ```
 3. Install dependencies for both frontend and backend:
    ```bash
-   cd client
+   cd frontend
    npm install
 
-   cd ../server
+   cd Backend
    npm install
    ```
 4. Set up environment variables:
@@ -102,11 +102,9 @@ The architecture utilizes JWT tokens for secure and scalable role-based authenti
 5. Start the application:
    ```bash
    # Start the backend
-   cd server
    npm run dev
 
    # Start the frontend
-   cd ../client
    npm start
    ```
 6. Access the application at `http://localhost:3000`.
