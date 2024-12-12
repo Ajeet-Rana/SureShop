@@ -1,4 +1,6 @@
-# E-Commerce Website
+# SureShop -  E-Commerce Website
+
+[CLICK ON IMAGE TO WATCH VIDEO![Screenshot 2024-12-12 172810](https://github.com/user-attachments/assets/4f435175-140e-43e1-967b-92a57bbbda4a)](https://www.youtube.com/watch?v=VDinVk-ti50)
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
